@@ -5,6 +5,7 @@ import ThemeRegistry from "../ThemeRegistry"; // MUI Theme Provider
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import MswDevProvider from '../MswDevProvider'; // Import MSW Provider
+import { SessionProvider } from "next-auth/react"; // Import SessionProvider
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,9 +46,11 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MswDevProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <ThemeRegistry>{children}</ThemeRegistry>
-          </NextIntlClientProvider>
+          <SessionProvider> {/* SessionProvider wraps NextIntlClientProvider and ThemeRegistry */}
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <ThemeRegistry>{children}</ThemeRegistry>
+            </NextIntlClientProvider>
+          </SessionProvider>
         </MswDevProvider>
       </body>
     </html>
