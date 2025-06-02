@@ -1,0 +1,31 @@
+{
+  "Greeting": {
+    "hello": "こんにちは、世界！",
+    "welcome": "Next.jsアプリへようこそ！"
+  },
+  "MuiTestPage": {
+    "title": "MUIテストページ",
+    "buttonText": "こんにちは世界 (MUIボタン)",
+    "translatedMessage": "これはMUIテストページ上の翻訳されたメッセージです。"
+  },
+  "NotFound": {
+    "title": "ページが見つかりません",
+    "description": "申し訳ありませんが、お探しのページは存在しません。",
+    "goHome": "ホームページに戻る"
+  },
+  "TasksPage": {
+    "title": "タスク一覧",
+    "columnTitle": "タイトル",
+    "columnAssignee": "担当者",
+    "columnStatus": "ステータス",
+    "columnDeadline": "期限",
+    "noTasks": "タスクが見つかりません。",
+    "unassigned": "未割り当て",
+    "pending": "保留中",
+    "in_progress": "進行中",
+    "completed": "完了",
+    "previousButton": "前へ",
+    "nextButton": "次へ",
+    "errorFetchingTasks": "タスクの取得中にエラーが発生しました。もう一度お試しください。"
+  }
+}

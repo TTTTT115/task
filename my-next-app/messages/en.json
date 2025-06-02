@@ -1,0 +1,31 @@
+{
+  "Greeting": {
+    "hello": "Hello, World!",
+    "welcome": "Welcome to our Next.js app!"
+  },
+  "MuiTestPage": {
+    "title": "MUI Test Page",
+    "buttonText": "Hello World (MUI Button)",
+    "translatedMessage": "This is a translated message on the MUI test page."
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist.",
+    "goHome": "Go back to the homepage"
+  },
+  "TasksPage": {
+    "title": "Tasks List",
+    "columnTitle": "Title",
+    "columnAssignee": "Assignee",
+    "columnStatus": "Status",
+    "columnDeadline": "Deadline",
+    "noTasks": "No tasks found.",
+    "unassigned": "Unassigned",
+    "pending": "Pending",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "previousButton": "Previous",
+    "nextButton": "Next",
+    "errorFetchingTasks": "Error fetching tasks. Please try again."
+  }
+}
