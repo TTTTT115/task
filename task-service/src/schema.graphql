@@ -1,0 +1,33 @@
+type Task {
+  id: ID!
+  title: String!
+  assigneeId: String
+  status: String!
+  deadline: String # Using String for DateTime for now, can use custom scalar later
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Query {
+  tasks: [Task!]!
+}
+
+input CreateTaskInput {
+  title: String!
+  assigneeId: String
+  status: String!
+  deadline: String
+}
+
+input UpdateTaskInput {
+  id: ID!
+  title: String
+  assigneeId: String
+  status: String
+  deadline: String
+}
+
+type Mutation {
+  createTask(data: CreateTaskInput!): Task!
+  updateTask(data: UpdateTaskInput!): Task!
+}

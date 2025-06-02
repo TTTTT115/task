@@ -1,0 +1,64 @@
+name: CI Backend
+
+on:
+  push:
+    branches: [ main, backend/task-service ] # Adjust branches as needed
+  pull_request:
+    branches: [ main ] # Adjust branches as needed
+
+jobs:
+  test-task-service:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./task-service
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Set up Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+      # This step is for self-hosted runners or environments where docker-compose isn't pre-installed.
+      # GitHub-hosted runners usually have Docker and Docker Compose.
+      # If using GitHub-hosted runners, you might not need this explicit install.
+
+    - name: Start PostgreSQL container
+      run: docker-compose up -d
+      working-directory: ./ # docker-compose.yml is at the root
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        echo "Waiting for PostgreSQL to start..."
+        until docker exec task_service_postgres pg_isready -U user -d mydb; do
+          sleep 2
+        done
+        echo "PostgreSQL started."
+      working-directory: ./ # For docker exec command context
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Generate Prisma Client
+      run: npx prisma generate
+
+    # Optional: Add linting step here if a linter is configured
+    # - name: Lint
+    #   run: npm run lint
+
+    - name: Run tests
+      run: npm test
+      env:
+        DATABASE_URL: postgresql://user:password@localhost:5432/mydb?schema=public
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose down
+      working-directory: ./ # docker-compose.yml is at the root
