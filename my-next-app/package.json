@@ -6,17 +6,21 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:saml": "node test-saml.js"
   },
   "dependencies": {
+    "@auth/core": "^0.39.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.1.0",
+    "express": "^5.1.0",
     "graphql": "^16.11.0",
     "graphql-request": "^7.2.0",
     "msw": "^2.8.7",
     "next": "15.3.3",
     "next-intl": "^4.1.0",
+    "passport-saml": "^3.2.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
