@@ -3,9 +3,9 @@ type Task {
   title: String!
   assigneeId: ID
   status: TaskStatus!
-  deadline: String # Using String for simplicity, could be a custom Scalar like Date
-  createdAt: String! # Using String for simplicity, could be DateTime
-  updatedAt: String! # Using String for simplicity, could be DateTime
+  deadline: String
+  createdAt: String!
+  updatedAt: String!
 }
 
 enum TaskStatus {
@@ -34,5 +34,13 @@ type TaskConnection {
 
 type Query {
   tasks(first: Int, after: String, last: Int, before: String): TaskConnection
-  # Add other queries here if needed in the future
+}
+
+type Mutation {
+  updateTask(id: ID!, title: String, assigneeId: ID, status: TaskStatus, deadline: String): Task
+  # Add other mutations here if needed
+}
+
+type Subscription {
+  taskUpdated: Task
 }
